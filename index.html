@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexorDT - Landing Pages de Alto Impacto | Escalera de Valor</title>
+    <meta name="description" content="Transforma tu presencia digital con landing pages que venden. 3 planes: Base ($200k), Intermedio ($400k), Premium ($600k).">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Particle Background -->
+    <div id="particle-container" class="particle-container"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container navbar-content">
+            <div class="logo">NexorDT</div>
+            <ul class="nav-links">
+                <li><a href="#hero">Inicio</a></li>
+                <li><a href="#pricing">Planes</a></li>
+                <li><a href="#portfolio">Proyectos</a></li>
+                <li><a href="#testimonials">Testimonios</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#cta" class="cta-link">Contactar</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="container hero-content">
+            <h1 class="hero-title">
+                Landing Pages que <span class="gradient-text">VENDEN</span>
+            </h1>
+            <p class="hero-subtitle">
+                Diseño premium + Conversión garantizada + Soporte total
+            </p>
+            <div class="hero-ctas">
+                <button class="btn btn-primary" onclick="scrollToSection('pricing')">Ver Planes</button>
+                <button class="btn btn-secondary" onclick="openWhatsApp('general')">Contactar por WhatsApp</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Escalera de Valor</h2>
+            <p class="section-subtitle">Elige el plan que se ajuste a tu negocio</p>
+            
+            <div class="pricing-grid">
+                <!-- Plan Base -->
+                <div class="pricing-card">
+                    <div class="plan-header">
+                        <h3>Plan Base</h3>
+                        <p class="plan-price">$200<span>k</span></p>
+                    </div>
+                    <p class="plan-description">Ultra-básica perfecta para emprendedores</p>
+                    <ul class="plan-features">
+                        <li>✓ 1 Página landing responsiva</li>
+                        <li>✓ Diseño moderno y atractivo</li>
+                        <li>✓ Formulario de contacto básico</li>
+                        <li>✓ SEO básico</li>
+                        <li>✓ SSL incluido</li>
+                        <li>✗ Base de datos</li>
+                        <li>✗ WhatsApp flotante</li>
+                    </ul>
+                    <button class="btn btn-plan" onclick="openWhatsApp('base')">Seleccionar Plan</button>
+                </div>
+
+                <!-- Plan Intermedio -->
+                <div class="pricing-card">
+                    <div class="plan-header">
+                        <h3>Plan Intermedio</h3>
+                        <p class="plan-price">$400<span>k</span></p>
+                    </div>
+                    <p class="plan-description">SEO local + conversión avanzada</p>
+                    <ul class="plan-features">
+                        <li>✓ 3-5 Páginas landing</li>
+                        <li>✓ Diseño premium adaptativo</li>
+                        <li>✓ SEO local optimizado</li>
+                        <li>✓ Formularios avanzados</li>
+                        <li>✓ WhatsApp flotante</li>
+                        <li>✓ Google Analytics</li>
+                        <li>✗ Base de datos</li>
+                    </ul>
+                    <button class="btn btn-plan" onclick="openWhatsApp('intermedio')">Seleccionar Plan</button>
+                </div>
+
+                <!-- Plan Premium -->
+                <div class="pricing-card premium">
+                    <div class="badge-premium">Recomendado</div>
+                    <div class="plan-header">
+                        <h3>Plan Premium</h3>
+                        <p class="plan-price">$600<span>k</span></p>
+                    </div>
+                    <p class="plan-description">Llave en mano 48 horas</p>
+                    <ul class="plan-features">
+                        <li>✓ 5-10 Páginas dinamicas</li>
+                        <li>✓ Diseño ultra-premium</li>
+                        <li>✓ Base de datos MongoDB</li>
+                        <li>✓ Deploy en Vercel + Firebase</li>
+                        <li>✓ Gestión de leads</li>
+                        <li>✓ WhatsApp + Email automation</li>
+                        <li>✓ Soporte 24/7 por 6 meses</li>
+                    </ul>
+                    <button class="btn btn-premium" onclick="openWhatsApp('premium')">Aceptar Oferta</button>
+                    <p class="guarantee">✓ Garantía de entrega 48 horas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key In Hand Section -->
+    <section class="key-in-hand">
+        <div class="container">
+            <h2 class="section-title">Plan Premium: Llave en Mano</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h4>Día 1: Briefing</h4>
+                    <p>Definimos tu estrategia y requisitos</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h4>Día 1-2: Desarrollo</h4>
+                    <p>Desarrollo ágil y entregables continuos</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h4>Día 2: Deploy</h4>
+                    <p>Publicación en producción y testing final</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h4>Día 2+: Soporte</h4>
+                    <p>Soporte técnico completo por 6 meses</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">Nuestros Proyectos</h2>
+            <p class="section-subtitle">Casos de éxito que hablan por sí solos</p>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <div class="portfolio-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                    <h3>TechStartup</h3>
+                    <p>Landing page de conversión para SaaS</p>
+                    <span class="portfolio-tag">Next.js + Vercel</span>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                    <h3>E-Commerce Plus</h3>
+                    <p>Tienda online con sistema de pagos</p>
+                    <span class="portfolio-tag">React + Stripe</span>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                    <h3>ClinicaDigital</h3>
+                    <p>Sistema de reservas médico</p>
+                    <span class="portfolio-tag">Full Stack</span>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
+                    <h3>RestaurantePro</h3>
+                    <p>Landing + Pedidos online</p>
+                    <span class="portfolio-tag">Next.js + Firebase</span>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
+                    <h3>AgenciaMarketing</h3>
+                    <p>Portfolio profesional interactivo</p>
+                    <span class="portfolio-tag">React Avanzado</span>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-image" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);"></div>
+                    <h3>ConsultoriaGlobal</h3>
+                    <p>Sitio corporativo con blog</p>
+                    <span class="portfolio-tag">Headless CMS</span>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-image" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);"></div>
+                    <h3>FitnessApp</h3>
+                    <p>Landing de aplicación móvil</p>
+                    <span class="portfolio-tag">Web App</span>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-image" style="background: linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%);"></div>
+                    <h3>TravelCompany</h3>
+                    <p>Plataforma de viajes y reservas</p>
+                    <span class="portfolio-tag">Booking System</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Lo Que Dicen Nuestros Clientes</h2>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Increíble trabajo. Mi landing convertía 0 en 3 semanas estamos vendiendo. 100% recomendado."</p>
+                    <strong>- Carlos López</strong>
+                    <span>CEO de TechStartup</span>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"El equipo fue ágil, profesional y entregó exacto a tiempo. La calidad es impresionante."</p>
+                    <strong>- María García</strong>
+                    <span>Directora de E-Commerce Plus</span>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Mejoramos nuestro SEO un 300%. Las conversiones subieron exponencialmente."</p>
+                    <strong>- Juan Martínez</strong>
+                    <span>Propietario ClinicaDigital</span>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"El soporte post-deploy fue fundamental. Cualquier cambio fue resuelto al instante."</p>
+                    <strong>- Laura Rodríguez</strong>
+                    <span>Marketing Manager RestaurantePro</span>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Diseño premium a precio justo. No encontramos mejor opción en el mercado."</p>
+                    <strong>- Pedro González</strong>
+                    <span>Socio AgenciaMarketing</span>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"El equipo entiende de negocios, no solo de código. Recomiendo ampliamente."</p>
+                    <strong>- Ana Fernández</strong>
+                    <span>Directora ConsultoriaGlobal</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">Preguntas Frecuentes</h2>
+            
+            <div class="faq-container">
+                <details class="faq-item">
+                    <summary>¿Cuánto tiempo tarda la entrega del Plan Premium?</summary>
+                    <p>El Plan Premium se entrega en 48 horas. Es nuestro compromiso de "Llave en Mano". Los planes Base e Intermedio toman 5-10 días hábiles.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>¿Puedo cambiar de plan después?</summary>
+                    <p>Sí, ofrecemos flexibilidad. Puedes escalar a un plan superior en cualquier momento. Si escalas en los primeros 30 días, aplicamos el crédito de lo que pagaste.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>¿Qué incluye el soporte de 6 meses del Plan Premium?</summary>
+                    <p>Incluye: cambios pequeños en contenido, optimizaciones de velocidad, actualizaciones de seguridad, asesoramiento estratégico, y acceso directo a nuestro equipo técnico.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>¿Se incluye el dominio y hosting?</summary>
+                    <p>Los planes incluyen hosting en Vercel (premium). El dominio corre por tu cuenta (~$10-15/año). Podemos configurarlo por ti sin costo adicional.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>¿Puedo agregar funcionalidades después del deploy?</summary>
+                    <p>Claro. En el Plan Premium tienes 6 meses de soporte. Cambios mayores se facturan por horas. Cambios menores están incluidos.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>¿Qué pasa si no estoy satisfecho?</summary>
+                    <p>En el Plan Premium, si en 14 días no estás satisfecho con entregas principales, hacemos ajustes sin costo. Garantía de calidad 100%.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>¿Incluye integración con CRM o email marketing?</summary>
+                    <p>En Plan Premium sí. Integramos con Zapier, Make.com, HubSpot, Mailchimp, y otros. En planes menores, integraciones básicas de formulario.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>¿Cómo es el proceso de pago?</summary>
+                    <p>50% al inicio del proyecto, 50% al deploy. Aceptamos transferencias, tarjeta crédito, crypto. Sin sorpresas, todo acordado antes.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>¿Mi landing será mobile-responsive?</summary>
+                    <p>100% responsiva. Diseñamos mobile-first. Se verá perfecta en celular, tablet y desktop. Esto incluye todos nuestros planes.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>¿Ofrecen mantenimiento después del soporte?</summary>
+                    <p>Sí, ofrecemos paquetes de mantenimiento opcional ($100-300/mes) para soporte técnico continuo y nuevas funcionalidades después de los 6 meses iniciales.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="cta-section">
+        <div class="container">
+            <h2>Transforma Tu Presencia Digital Hoy</h2>
+            <p>No dejes que tu competencia gane terreno. Elige tu plan ahora mismo.</p>
+            <button class="btn btn-large" onclick="scrollToSection('pricing')">Ver Planes</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h4>NexorDT</h4>
+                <p>Landing Pages que venden. Transformamos tu visión en realidad digital.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces</h4>
+                <ul>
+                    <li><a href="#hero">Inicio</a></li>
+                    <li><a href="#pricing">Planes</a></li>
+                    <li><a href="#portfolio">Proyectos</a></li>
+                    <li><a href="#testimonials">Testimonios</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <ul>
+                    <li>📧 info@nexordt.com</li>
+                    <li>📱 WhatsApp: <a href="https://wa.me/5491234567890">+54 9 123 456 7890</a></li>
+                    <li>🌐 www.nexordt.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 NexorDT. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a id="whatsapp-btn" href="#" class="whatsapp-btn" onclick="event.preventDefault(); return false;">
+        <span>💬</span>
+    </a>
+
+    <script src="main.js"></script>
+</body>
+</html>
