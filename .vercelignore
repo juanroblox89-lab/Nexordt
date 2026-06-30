@@ -1,0 +1,4 @@
+# Ignore files for Vercel deployments
+node_modules
+.vscode
+*.log
