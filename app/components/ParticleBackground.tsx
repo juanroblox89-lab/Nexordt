@@ -32,14 +32,8 @@ export default function ParticleBackground() {
 
     // Ajustar cantidad según ancho (menos en móviles)
     const particleCount = window.innerWidth < 768 ? 18 : Math.min(60, Math.floor(window.innerWidth / 30))
-    const particles: {
-      x: number
-      y: number
-      size: number
-      speedX: number
-      speedY: number
-      color: string
-    }[] = []
+    // Use the Particle class as the array element type so methods are recognized by TS
+    const particles: Particle[] = []
 
     const canvasWidth = () => canvas.width / (window.devicePixelRatio || 1)
     const canvasHeight = () => canvas.height / (window.devicePixelRatio || 1)
