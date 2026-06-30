@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     'landing page, diseño web, Next.js, Firebase, Vercel, precio, plan',
   viewport: 'width=device-width, initial-scale=1',
   icons: {
-    icon: '🚀',
+    icon: '/favicon.svg',
   },
 }
 

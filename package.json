@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Landing page premium NexorDT - Escalera de Valor",
   "private": true,
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -25,7 +28,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
-    "@types/react": "^18.2.0",
+    "@types-react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "eslint": "^8.50.0",
     "eslint-config-next": "^14.0.0"

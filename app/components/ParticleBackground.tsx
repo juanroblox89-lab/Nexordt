@@ -1,10 +1,11 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
 
 export default function ParticleBackground() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement | null>(null)
+  const rafRef = useRef<number | null>(null)
+  const resizeTimeout = useRef<number | null>(null)
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -13,46 +14,59 @@ export default function ParticleBackground() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    // Configuración del canvas
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
+    let animationRunning = true
 
-    // Partículas
-    const particles: any[] = []
-    const particleCount = 50
-    const canvasWidth = canvas.width
-    const canvasHeight = canvas.height
+    const setCanvasSize = () => {
+      const w = window.innerWidth
+      const h = window.innerHeight
+      const dpr = window.devicePixelRatio || 1
 
-    class Particle {
+      canvas.style.width = `${w}px`
+      canvas.style.height = `${h}px`
+      canvas.width = Math.floor(w * dpr)
+      canvas.height = Math.floor(h * dpr)
+
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    }
+
+    setCanvasSize()
+
+    // Ajustar cantidad según ancho (menos en móviles)
+    const particleCount = window.innerWidth < 768 ? 18 : Math.min(60, Math.floor(window.innerWidth / 30))
+    const particles: {
       x: number
       y: number
       size: number
       speedX: number
       speedY: number
       color: string
+    }[] = []
 
-      constructor() {
-        this.x = Math.random() * canvasWidth
-        this.y = Math.random() * canvasHeight
-        this.size = Math.random() * 2 + 0.5
-        this.speedX = (Math.random() - 0.5) * 0.5
-        this.speedY = (Math.random() - 0.5) * 0.5
-        this.color = `rgba(0, 212, 255, ${Math.random() * 0.5 + 0.2})`
-      }
+    const canvasWidth = () => canvas.width / (window.devicePixelRatio || 1)
+    const canvasHeight = () => canvas.height / (window.devicePixelRatio || 1)
+
+    class Particle {
+      x = Math.random() * canvasWidth()
+      y = Math.random() * canvasHeight()
+      size = Math.random() * 2 + 0.5
+      speedX = (Math.random() - 0.5) * 0.5
+      speedY = (Math.random() - 0.5) * 0.5
+      color = `rgba(0, 212, 255, ${Math.random() * 0.5 + 0.15})`
 
       update() {
         this.x += this.speedX
         this.y += this.speedY
 
-        // Rebotar en los bordes
-        if (this.x > canvasWidth) this.x = 0
-        if (this.x < 0) this.x = canvasWidth
-        if (this.y > canvasHeight) this.y = 0
-        if (this.y < 0) this.y = canvasHeight
+        const w = canvasWidth()
+        const h = canvasHeight()
+
+        if (this.x > w) this.x = 0
+        if (this.x < 0) this.x = w
+        if (this.y > h) this.y = 0
+        if (this.y < 0) this.y = h
       }
 
       draw() {
-        if (!ctx) return
         ctx.fillStyle = this.color
         ctx.beginPath()
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
@@ -60,23 +74,23 @@ export default function ParticleBackground() {
       }
     }
 
-    // Crear partículas
     for (let i = 0; i < particleCount; i++) {
       particles.push(new Particle())
     }
 
-    // Dibujar líneas entre partículas cercanas
     const drawConnections = () => {
-      const distance = 150
+      const maxDist = 120
+      const maxDistSq = maxDist * maxDist
 
       for (let a = 0; a < particles.length; a++) {
         for (let b = a + 1; b < particles.length; b++) {
           const dx = particles[a].x - particles[b].x
           const dy = particles[a].y - particles[b].y
-          const dist = Math.sqrt(dx * dx + dy * dy)
+          const distSq = dx * dx + dy * dy
 
-          if (dist < distance) {
-            ctx.strokeStyle = `rgba(0, 212, 255, ${0.2 * (1 - dist / distance)})`
+          if (distSq < maxDistSq) {
+            const alpha = 0.2 * (1 - distSq / maxDistSq)
+            ctx.strokeStyle = `rgba(0, 212, 255, ${alpha})`
             ctx.lineWidth = 0.5
             ctx.beginPath()
             ctx.moveTo(particles[a].x, particles[a].y)
@@ -87,32 +101,58 @@ export default function ParticleBackground() {
       }
     }
 
-    // Animación
     const animate = () => {
-      ctx.fillStyle = 'rgba(26, 26, 46, 0.02)'
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
+      if (!animationRunning) return
+      // limpiar el canvas por completo para evitar artefactos
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-      particles.forEach((particle) => {
-        particle.update()
-        particle.draw()
+      particles.forEach((p) => {
+        p.update()
+        p.draw()
       })
 
       drawConnections()
-      requestAnimationFrame(animate)
+      rafRef.current = requestAnimationFrame(animate)
     }
 
-    animate()
+    // Iniciar animación
+    rafRef.current = requestAnimationFrame(animate)
 
-    // Manejar redimensionamiento
     const handleResize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
+      if (resizeTimeout.current) {
+        window.clearTimeout(resizeTimeout.current)
+      }
+      resizeTimeout.current = window.setTimeout(() => {
+        setCanvasSize()
+        // Reposicionar partículas al nuevo tamaño para evitar fuera de rango
+        for (const p of particles) {
+          p.x = Math.random() * canvasWidth()
+          p.y = Math.random() * canvasHeight()
+        }
+      }, 150)
+    }
+
+    const handleVisibility = () => {
+      if (document.hidden) {
+        animationRunning = false
+        if (rafRef.current) cancelAnimationFrame(rafRef.current)
+        rafRef.current = null
+      } else {
+        if (!animationRunning) {
+          animationRunning = true
+          rafRef.current = requestAnimationFrame(animate)
+        }
+      }
     }
 
     window.addEventListener('resize', handleResize)
+    document.addEventListener('visibilitychange', handleVisibility)
 
     return () => {
       window.removeEventListener('resize', handleResize)
+      document.removeEventListener('visibilitychange', handleVisibility)
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
+      if (resizeTimeout.current) window.clearTimeout(resizeTimeout.current)
     }
   }, [])
 
@@ -120,6 +160,7 @@ export default function ParticleBackground() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 w-full h-full pointer-events-none"
+      aria-hidden="true"
     />
   )
 }
